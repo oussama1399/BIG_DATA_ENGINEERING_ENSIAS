@@ -1,0 +1,43 @@
+version: '3'
+services:
+  hadoop-master:
+    image: yassern1/hadoop-spark-jupyter:1.0.3
+    container_name: hadoop-master
+    hostname: hadoop-master
+    ports:
+      - "9870:9870"   # HDFS NameNode UI
+      - "8088:8088"   # YARN ResourceManager UI
+      - "9000:9000"   # HDFS default FS port
+    volumes:
+      - ../datasets:/shared_volume
+    networks:
+      - hadoop-net
+    command: /bin/bash -c "service ssh start; tail -f /dev/null"
+
+  hadoop-slave1:
+    image: yassern1/hadoop-spark-jupyter:1.0.3
+    container_name: hadoop-slave1
+    hostname: hadoop-slave1
+    ports:
+      - "8040:8042"   # YARN NodeManager UI
+    volumes:
+      - ../datasets:/shared_volume
+    networks:
+      - hadoop-net
+    command: /bin/bash -c "service ssh start; tail -f /dev/null"
+
+  hadoop-slave2:
+    image: yassern1/hadoop-spark-jupyter:1.0.3
+    container_name: hadoop-slave2
+    hostname: hadoop-slave2
+    ports:
+      - "8041:8042"   # YARN NodeManager UI
+    volumes:
+      - ../datasets:/shared_volume
+    networks:
+      - hadoop-net
+    command: /bin/bash -c "service ssh start; tail -f /dev/null"
+
+networks:
+  hadoop-net:
+    driver: bridge
