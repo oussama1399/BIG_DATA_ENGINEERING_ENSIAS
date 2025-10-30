@@ -16,7 +16,8 @@ import org.apache.spark.api.java.*;
 public class HbaseSparkProcess {
 
     /**
-     * Méthode principale pour lire la table HBase et compter les éléments avec Spark.
+     * Méthode principale pour lire la table HBase et compter les éléments avec
+     * Spark.
      * Configure HBase, crée un RDD à partir de la table "products",
      * et affiche le nombre d'enregistrements.
      */
@@ -26,8 +27,8 @@ public class HbaseSparkProcess {
 
         // Configuration Spark pour l'application
         SparkConf sparkConf = new SparkConf()
-                .setAppName("SparkHBaseTest")  // Nom de l'application Spark
-                .setMaster("local[4]");        // Mode local avec 4 threads
+                .setAppName("SparkHBaseTest") // Nom de l'application Spark
+                .setMaster("local[4]"); // Mode local avec 4 threads
 
         // Création du contexte Spark
         JavaSparkContext jsc = new JavaSparkContext(sparkConf);
